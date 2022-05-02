@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 
-export const authLogin = ( req: Request, res: Response ) => {
+export const getUsers = ( req: Request, res: Response ) => {
   try {
 
     res.status( 200 ).json({
       ok: true,
-      msg: 'authLogin'
+      msg: 'getUsers'
     });
 
   } catch ( err ) {
-    console.log( `${ '[AUTH-LOGIN.CONTROLLER]'.red }: Error details - ${ err }` );
+    console.log( `${ '[GET-USERS.CONTROLLER]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: true,
       msg: 'Something went wrong. Talking the Admin.'

@@ -3,7 +3,10 @@ import cors from 'cors';
 // Interfaces
 import { ApiPaths } from '../interfaces/interfaces';
 // Routes
-import { authRouter } from '../routes';
+import {
+  authRouter,
+  usersRouter
+} from '../routes';
 
 class Server {
   private app: Application;
@@ -14,7 +17,8 @@ class Server {
     this.app = express();
     this.port = process.env.PORT || '3002';
     this.apiPaths = {
-      auth: '/api/auth'
+      auth: '/api/auth',
+      users: '/api/users'
     }
 
     // Init methods
@@ -29,6 +33,7 @@ class Server {
 
   routes() {
     this.app.use( this.apiPaths.auth, authRouter );
+    this.app.use( this.apiPaths.users, usersRouter );
   }
 
   listen() {
