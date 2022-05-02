@@ -1,6 +1,9 @@
 import express, { Application } from 'express';
+import cors from 'cors';
 // Interfaces
 import { ApiPaths } from '../interfaces/interfaces';
+// Routes
+import { authRouter } from '../routes';
 
 class Server {
   private app: Application;
@@ -14,7 +17,18 @@ class Server {
       auth: '/api/auth'
     }
 
-    // TODO: Init methods
+    // Init methods
+    this.middlewares();
+    this.routes();
+  }
+
+  middlewares() {
+    this.app.use( cors() );
+    this.app.use( express.json() );
+  }
+
+  routes() {
+    this.app.use( this.apiPaths.auth, authRouter );
   }
 
   listen() {
