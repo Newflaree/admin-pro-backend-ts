@@ -1,5 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
+// Database
+import dbConnection from '../database/config.db';
 // Interfaces
 import { ApiPaths } from '../interfaces/interfaces';
 // Routes
@@ -15,15 +17,20 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.port = process.env.PORT || '3002';
+    this.port = process.env.PORT || '3001';
     this.apiPaths = {
       auth: '/api/auth',
       users: '/api/users'
     }
 
     // Init methods
+    this.dbConnect();
     this.middlewares();
     this.routes();
+  }
+
+  async dbConnect() {
+    await dbConnection();
   }
 
   middlewares() {
@@ -42,7 +49,6 @@ class Server {
       console.log( `${ '[SERVER.LISTEN]'.green }: Listening on port ${ this.port.green }` );
     });
   }
-    
 }
 
 export default Server;

@@ -9,7 +9,7 @@ export const updateUser = ( req: Request, res: Response ) => {
     });
 
   } catch ( err ) {
-    console.log( `${ '[UPDATE-USER.CONTROLLER]'.red }: Error details - ${ err }` );
+    console.log( `${ '[CONTROLLER.UPDATE-USER]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: true,
       msg: 'Something went wrong. Talking the Admin.'

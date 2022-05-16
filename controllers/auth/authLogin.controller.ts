@@ -9,7 +9,7 @@ export const authLogin = ( req: Request, res: Response ) => {
     });
 
   } catch ( err ) {
-    console.log( `${ '[AUTH-LOGIN.CONTROLLER]'.red }: Error details - ${ err }` );
+    console.log( `${ '[CONTROLLER.AUTH.LOGIN]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
       ok: true,
       msg: 'Something went wrong. Talking the Admin.'
