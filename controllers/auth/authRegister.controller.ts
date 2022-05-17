@@ -7,6 +7,7 @@ export const authRegister = async ( req: Request, res: Response ) => {
   const { name, email, password } = req.body;
   try {
     const user = new User({ name, email, password });
+
     // Encrypt password
     const salt = bcrypt.genSaltSync();
     user.password = bcrypt.hashSync( password, salt );
@@ -14,7 +15,7 @@ export const authRegister = async ( req: Request, res: Response ) => {
     // Save to DB
     await user.save();
 
-    // Generate JWT
+    //TODO: Generate JWT
 
     res.status( 201 ).json({
       ok: true,
