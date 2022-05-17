@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
 // Models
 import { User } from '../../models';
 
@@ -7,8 +8,12 @@ export const authRegister = async ( req: Request, res: Response ) => {
   try {
     const user = new User({ name, email, password });
     // Encrypt password
+    const salt = bcrypt.genSaltSync();
+    user.password = bcrypt.hashSync( password, salt );
+
     // Save to DB
     await user.save();
+
     // Generate JWT
 
     res.status( 201 ).json({
