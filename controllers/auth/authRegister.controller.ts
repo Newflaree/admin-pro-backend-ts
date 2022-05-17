@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
+// Helpers
+import { generateJWT } from '../../helpers/jwt/generate-jwt.helper';
 // Models
 import { User } from '../../models';
 
@@ -15,11 +17,13 @@ export const authRegister = async ( req: Request, res: Response ) => {
     // Save to DB
     await user.save();
 
-    //TODO: Generate JWT
+    // Generate JWT
+    const token = await generateJWT( user._id );
 
     res.status( 201 ).json({
       ok: true,
-      user
+      user,
+      token
     });
 
   } catch ( err ) {

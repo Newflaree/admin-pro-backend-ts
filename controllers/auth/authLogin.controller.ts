@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 // Models
 import { User } from '../../models';
+import {generateJWT} from '../../helpers/jwt/generate-jwt.helper';
 
 export const authLogin = async ( req: Request, res: Response ) => {
   const { email, password } = req.body;
@@ -33,11 +34,14 @@ export const authLogin = async ( req: Request, res: Response ) => {
         msg: 'Incorrect email or password'
       });
     }
-    //TODO: Generate JWT
+
+    // Generate JWT
+    const token = await generateJWT( user._id );
 
     res.status( 200 ).json({
       ok: true,
-      user
+      user,
+      token
     });
 
   } catch ( err ) {
