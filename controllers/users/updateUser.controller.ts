@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-export const updateUser = ( req: Request, res: Response ) => {
+export const updateUser = async ( req: Request, res: Response ) => {
   try {
 
     res.status( 200 ).json({
@@ -11,7 +11,7 @@ export const updateUser = ( req: Request, res: Response ) => {
   } catch ( err ) {
     console.log( `${ '[CONTROLLER.UPDATE-USER]'.red }: Error details - ${ err }` );
     res.status( 500 ).json({
-      ok: true,
+      ok: false,
       msg: 'Something went wrong. Talking the Admin.'
     });
   }
