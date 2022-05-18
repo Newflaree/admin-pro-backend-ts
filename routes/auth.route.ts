@@ -5,7 +5,7 @@ import { authLogin, authRegister } from '../controllers/auth';
 // Helpers
 import { emailValidation } from '../helpers/db/users.helper';
 // Middlewares
-import { validateFields } from '../middlewares/validate-fields.middleware';
+import { validateFields } from '../middlewares';
 
 /*
   PATH: '/api/auth'
