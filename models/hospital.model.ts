@@ -26,4 +26,4 @@ HospitalSchema.methods.toJSON = function() {
   return object;
 }
 
-export default model<HospitalProps>( 'User', HospitalSchema );
+export default model<HospitalProps>( 'Hospital', HospitalSchema );

@@ -7,6 +7,7 @@ import { ApiPaths } from '../interfaces/paths-interfaces';
 // Routes
 import {
   authRouter,
+  hospitalsRouter,
   usersRouter
 } from '../routes';
 
@@ -41,6 +42,7 @@ class Server {
 
   routes() {
     this.app.use( this.apiPaths.auth, authRouter );
+    this.app.use( this.apiPaths.hospitals, hospitalsRouter );
     this.app.use( this.apiPaths.users, usersRouter );
   }
 
