@@ -2,7 +2,8 @@ import { NextFunction, Response } from "express";
 import jwt from 'jsonwebtoken';
 // Interfaces
 import { UserAuthRequest } from "../interfaces/http-interfaces";
-import {User} from "../models";
+// Models
+import { User } from "../models";
 
 
 export const validateJWT = async ( req: UserAuthRequest, res: Response, next: NextFunction ) => {

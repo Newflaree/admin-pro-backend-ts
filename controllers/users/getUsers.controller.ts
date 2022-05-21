@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { User } from '../../models';
 
 export const getUsers = async ( req: Request, res: Response ) => {
-  const { from = 0, limit = 5 } = req.params;
+  const { from = 0, limit = 5 } = req.query;
   const condition = { status: true };
 
   try {

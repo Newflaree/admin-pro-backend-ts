@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { check } from 'express-validator';
 // Controllers
 import {
   deleteUser,
@@ -6,7 +7,10 @@ import {
   getUsers,
   updateUser
 } from '../controllers/users';
-import {validateFields, validateJWT} from '../middlewares';
+// Helpers
+import { idValidation } from '../helpers/db/users.helper';
+// Middlewares
+import { validateFields, validateJWT } from '../middlewares';
 
 /*
   PATH: '/api/users'
@@ -18,10 +22,25 @@ router.get( '/', [
   validateFields
 ], getUsers );
 
-router.get( '/:id', getUser );
+router.get( '/:id', [
+  validateJWT,
+  check( 'id', 'Invalid id' ).isMongoId(),
+  check( 'id' ).custom( idValidation ),
+  validateFields
+], getUser );
 
-router.put( '/:id', updateUser );
+router.put( '/:id', [
+  validateJWT,
+  check( 'id', 'Invalid id' ).isMongoId(),
+  check( 'id' ).custom( idValidation ),
+  validateFields
+], updateUser );
 
-router.delete( '/:id', deleteUser );
+router.delete( '/:id', [
+  validateJWT,
+  check( 'id', 'Invalid id' ).isMongoId(),
+  check( 'id' ).custom( idValidation ),
+  validateFields
+], deleteUser );
 
 export default router;

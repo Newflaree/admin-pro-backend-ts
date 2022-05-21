@@ -1,11 +1,24 @@
 import { Request, Response } from 'express';
+// Models
+import { User } from '../../models';
 
 export const deleteUser = async ( req: Request, res: Response ) => {
+  const { id } = req.params;
+  const inactivator = { status: false };
+
   try {
+    const user = await User.findByIdAndUpdate( id, inactivator ) || { status: false };
+
+    if ( !user.status ) {
+      return res.status( 400 ).json({
+        ok: false,
+        msg: 'There is no user with that id'
+      });
+    }
 
     res.status( 200 ).json({
       ok: true,
-      msg: 'deleteUser'
+      msg: `User was successfully deleted`
     });
 
   } catch ( err ) {
