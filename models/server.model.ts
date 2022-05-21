@@ -3,7 +3,7 @@ import cors from 'cors';
 // Database
 import dbConnection from '../database/config.db';
 // Interfaces
-import { ApiPaths } from '../interfaces/interfaces';
+import { ApiPaths } from '../interfaces/paths-interfaces';
 // Routes
 import {
   authRouter,
@@ -20,7 +20,8 @@ class Server {
     this.port = process.env.PORT || '3001';
     this.apiPaths = {
       auth: '/api/auth',
-      users: '/api/users'
+      users: '/api/users',
+      hospitals: '/api/hospitals'
     }
 
     // Init methods
