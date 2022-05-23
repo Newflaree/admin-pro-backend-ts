@@ -3,11 +3,17 @@ import { Request, Response } from 'express';
 import { Hospital } from '../../models';
 
 export const updateHospital = async ( req: Request, res: Response ) => {
+  const { id } = req.params;
+  const { img, status, _id, ...rest } = req.body;
+  rest.name = rest.name.toUpperCase();
+
   try {
+    const hospital = await Hospital.findByIdAndUpdate( id, rest, {new: true} )
+      .populate( 'user', 'name' );
 
     res.status( 200 ).json({
       ok: true,
-      msg: `updateHospital`
+      hospital
     });
 
   } catch ( err ) {
