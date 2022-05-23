@@ -3,11 +3,22 @@ import { Request, Response } from 'express';
 import { Hospital } from '../../models';
 
 export const getHospitals = async ( req: Request, res: Response ) => {
+  const { from = 0, limit = 5 } = req.query;
+  const condition = { status: true };
+
   try {
+    const [ total, hospitals ] = await Promise.all([
+      Hospital.countDocuments( condition ),
+      Hospital.find( condition )
+        .populate( 'user', 'name' )
+        .skip( Number( from ) )
+        .limit( Number( limit ) )
+    ]);
 
     res.status( 200 ).json({
       ok: true,
-      msg: `getHospitals`
+      total,
+      hospitals
     });
 
   } catch ( err ) {

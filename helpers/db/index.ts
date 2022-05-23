@@ -1,7 +1,8 @@
+
 // Users
 export {
   emailValidation, 
   idValidation
 } from "./users.helper";
 // Hospitals
-export { hospitalValidation } from "./hospitals.helper";
+export { hospitalValidation, hospitalIdValidation } from "./hospitals.helper";

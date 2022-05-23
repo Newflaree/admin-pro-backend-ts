@@ -9,7 +9,7 @@ import {
   updateHospital
 } from '../controllers/hospitals';
 // Helpers
-import { hospitalValidation } from '../helpers/db';
+import { hospitalIdValidation, hospitalValidation } from '../helpers/db';
 // Middlewares
 import { validateFields, validateJWT } from '../middlewares';
 
@@ -32,16 +32,24 @@ router.get( '/', [
 
 router.get( '/:id', [
   validateJWT,
+  check( 'id', 'Invalid id' ).isMongoId(),
+  check( 'id' ).custom( hospitalIdValidation ),
   validateFields
 ], getHospital );
 
 router.put( '/:id', [
   validateJWT,
+  check( 'name', 'Name is required' ).not().isEmpty(),
+  check( 'name' ).custom( hospitalValidation ),
+  check( 'id', 'Invalid id' ).isMongoId(),
+  check( 'id' ).custom( hospitalIdValidation ),
   validateFields
 ], updateHospital );
 
 router.delete( '/:id', [
   validateJWT,
+  check( 'id', 'Invalid id' ).isMongoId(),
+  check( 'id' ).custom( hospitalIdValidation ),
   validateFields
 ], deleteHospital );
 
