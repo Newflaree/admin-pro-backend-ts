@@ -9,6 +9,7 @@ import {
   updateHospital
 } from '../controllers/hospitals';
 // Helpers
+import { hospitalValidation } from '../helpers/db';
 // Middlewares
 import { validateFields, validateJWT } from '../middlewares';
 
@@ -19,6 +20,8 @@ const router: Router = Router();
 
 router.post( '/', [
   validateJWT,
+  check( 'name', 'Name is required' ).not().isEmpty(),
+  check( 'name' ).custom( hospitalValidation ),
   validateFields
 ], createHospital );
 
