@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 // Helpers
-import { generateJWT } from '../../helpers/jwt/generate-jwt.helper';
+import { generateJWT } from '../../helpers/jwt';
 // Models
 import { User } from '../../models';
 

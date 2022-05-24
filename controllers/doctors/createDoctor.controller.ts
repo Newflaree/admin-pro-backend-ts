@@ -1,13 +1,24 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { UserAuthRequest } from '../../interfaces/http-interfaces';
 // Models
 import { Doctor } from '../../models';
 
-export const createDoctor = async ( req: Request, res: Response ) => {
+export const createDoctor = async ( req: UserAuthRequest, res: Response ) => {
+  const { name, hospital } = req.body;
+
+  const data = {
+    name,
+    user: req.user._id,
+    hospital
+  }
+
   try {
+    const doctor = new Doctor( data );
+    await doctor.save();
 
     res.status( 201 ).json({
       ok: true,
-      msg: 'createDoctor'
+      doctor
     });
 
   } catch ( err ) {
