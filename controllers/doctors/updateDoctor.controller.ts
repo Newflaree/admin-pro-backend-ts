@@ -1,13 +1,29 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { UserAuthRequest } from '../../interfaces/http-interfaces';
 // Models
 import { Doctor } from '../../models';
 
-export const updateDoctor = async ( req: Request, res: Response ) => {
+export const updateDoctor = async ( req: UserAuthRequest, res: Response ) => {
+  const { id } = req.params;
+  const { status, ...rest } = req.body;
+  rest.user = req.user._id;
+
   try {
+    const doctor = await Doctor.findByIdAndUpdate( id, rest, { new: true })
+      .populate( 'user', 'name' ) 
+      .populate( 'hospital', 'name' )
+      || { status: false };
+
+    if ( !doctor.status ) {
+      return res.status( 400 ).json({
+        ok: false,
+        msg: 'There is no doctor with that id'
+      });
+    }
 
     res.status( 200 ).json({
       ok: true,
-      msg: 'updateDoctor'
+      doctor
     });
 
   } catch ( err ) {

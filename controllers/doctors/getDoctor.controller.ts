@@ -6,7 +6,10 @@ export const getDoctor = async ( req: Request, res: Response ) => {
   const { id } = req.params;
 
   try {
-    const doctor = await Doctor.findById( id ) || { status: false };
+    const doctor = await Doctor.findById( id )
+      .populate( 'user', 'name' ) 
+      .populate( 'hospital', 'name' )
+      || { status: false };
 
     if ( !doctor.status ) {
       return res.status( 400 ).json({
