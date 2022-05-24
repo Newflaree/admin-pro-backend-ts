@@ -16,3 +16,11 @@ export interface HospitalProps {
   user: ObjectId;
   status: boolean;
 }
+
+export interface DoctorProps {
+  name: string;
+  img?: string;
+  user: ObjectId;
+  hospital: ObjectId;
+  status: boolean;
+}

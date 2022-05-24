@@ -14,7 +14,7 @@ import { hospitalIdValidation, hospitalValidation } from '../helpers/db';
 import { validateFields, validateJWT } from '../middlewares';
 
 /*
-  PATH: '/api/auth'
+  PATH: '/api/hospitals'
 */
 const router: Router = Router();
 
