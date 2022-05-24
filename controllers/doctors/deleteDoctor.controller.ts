@@ -3,11 +3,21 @@ import { Request, Response } from 'express';
 import { Doctor } from '../../models';
 
 export const deleteDoctor = async ( req: Request, res: Response ) => {
+  const { id } = req.params;
+
   try {
+    const doctor = await Doctor.findByIdAndUpdate( id, { status: false } ) || { status: false };
+
+    if ( !doctor.status ) {
+      return res.status( 400 ).json({
+        ok: false,
+        msg: 'There is no doctor with that id'
+      });
+    }
 
     res.status( 200 ).json({
       ok: true,
-      msg: 'deleteDoctor'
+      msg: `Doctor was successfully deleted`
     });
 
   } catch ( err ) {

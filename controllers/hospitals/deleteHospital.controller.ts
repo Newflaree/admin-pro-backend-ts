@@ -6,8 +6,7 @@ export const deleteHospital = async ( req: Request, res: Response ) => {
   const { id } = req.params;
 
   try {
-    const hospital = await Hospital.findByIdAndUpdate( id, { status: false } )
-      .populate( 'user', 'name' ) || { status: false };
+    const hospital = await Hospital.findByIdAndUpdate( id, { status: false } ) || { status: false };
 
       if ( !hospital.status ) {
         return res.status( 400 ).json({
