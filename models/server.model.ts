@@ -10,6 +10,7 @@ import {
   doctorsRouter,
   hospitalsRouter,
   searchesRouter,
+  uploadsRouter,
   usersRouter
 } from '../routes';
 
@@ -23,10 +24,11 @@ class Server {
     this.port = process.env.PORT || '3001';
     this.apiPaths = {
       auth: '/api/auth',
-      users: '/api/users',
-      hospitals: '/api/hospitals',
       doctors: '/api/doctors',
-      searches: '/api/searches'
+      hospitals: '/api/hospitals',
+      searches: '/api/searches',
+      uploads: '/api/uploads',
+      users: '/api/users',
     }
 
     // Init methods
@@ -49,6 +51,7 @@ class Server {
     this.app.use( this.apiPaths.doctors, doctorsRouter );
     this.app.use( this.apiPaths.hospitals, hospitalsRouter );
     this.app.use( this.apiPaths.searches, searchesRouter );
+    this.app.use( this.apiPaths.uploads, uploadsRouter );
     this.app.use( this.apiPaths.users, usersRouter );
   }
 

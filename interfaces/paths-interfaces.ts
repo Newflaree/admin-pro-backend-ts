@@ -1,7 +1,8 @@
 export interface ApiPaths {
   auth: string;
-  users: string;
-  hospitals: string;
   doctors: string;
+  hospitals: string;
   searches: string;
+  uploads: string;
+  users: string;
 }
