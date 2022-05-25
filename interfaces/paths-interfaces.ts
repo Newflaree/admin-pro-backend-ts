@@ -3,4 +3,5 @@ export interface ApiPaths {
   users: string;
   hospitals: string;
   doctors: string;
+  searches: string;
 }

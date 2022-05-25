@@ -9,6 +9,7 @@ import {
   authRouter,
   doctorsRouter,
   hospitalsRouter,
+  searchesRouter,
   usersRouter
 } from '../routes';
 
@@ -24,7 +25,8 @@ class Server {
       auth: '/api/auth',
       users: '/api/users',
       hospitals: '/api/hospitals',
-      doctors: '/api/doctors'
+      doctors: '/api/doctors',
+      searches: '/api/searches'
     }
 
     // Init methods
@@ -46,6 +48,7 @@ class Server {
     this.app.use( this.apiPaths.auth, authRouter );
     this.app.use( this.apiPaths.doctors, doctorsRouter );
     this.app.use( this.apiPaths.hospitals, hospitalsRouter );
+    this.app.use( this.apiPaths.searches, searchesRouter );
     this.app.use( this.apiPaths.users, usersRouter );
   }
 
