@@ -10,8 +10,8 @@ export const getDoctors = async ( req: Request, res: Response ) => {
     const [ total, doctors ] = await Promise.all([
       Doctor.countDocuments( condition ),
       Doctor.find( condition )
-        .populate( 'user', 'name' )
-        .populate( 'hospital', 'name' )
+        .populate( 'user', 'name img' )
+        .populate( 'hospital', 'name img' )
         .skip( Number( from ) )
         .limit( Number( limit ) )
     ]);

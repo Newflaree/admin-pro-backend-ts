@@ -4,11 +4,12 @@ import { UserAuthRequest } from '../../interfaces/http-interfaces';
 import { Doctor } from '../../models';
 
 export const createDoctor = async ( req: UserAuthRequest, res: Response ) => {
+  const uid = req.user._id;
   const { name, hospital } = req.body;
 
   const data = {
     name,
-    user: req.user._id,
+    user: uid,
     hospital
   }
 

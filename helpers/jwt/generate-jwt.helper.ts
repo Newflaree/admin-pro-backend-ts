@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const generateJWT = ( uid: any ) => {
+export const generateJWT = ( uid: object ) => {
   return new Promise( ( resolve, reject ) => {
     const payload = { uid };
 
