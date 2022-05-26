@@ -1,3 +1,5 @@
+// Collections
+export { allowedCollections } from "./collections.helper";
 // Doctors
 export { doctorIdValidation } from "./doctors.helper";
 // Hospitals

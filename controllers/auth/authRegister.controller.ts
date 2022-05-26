@@ -5,6 +5,11 @@ import { generateJWT } from '../../helpers/jwt';
 // Models
 import { User } from '../../models';
 
+/*
+  PATH: '/api/auth/register'
+  DOC: Registers a new user, encrypting their password 
+       and generating a jwt to maintain the session.
+*/
 export const authRegister = async ( req: Request, res: Response ) => {
   const { name, email, password } = req.body;
   try {
