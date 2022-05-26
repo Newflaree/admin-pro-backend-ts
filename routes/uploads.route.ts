@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 // Controllers
-import { fileUpload } from '../controllers/uploads';
+import { fileUpload, showImg } from '../controllers/uploads';
 // Helpers
 import { allowedCollections } from '../helpers/db';
 // Middlewares
@@ -18,5 +18,7 @@ router.put( '/:collection/:id', [
   check( 'collection' ).custom( c => allowedCollections( c, [ 'users', 'hospitals', 'doctors' ] ) ),
   validateFields
 ], fileUpload );
+
+router.get( '/:collection/:id', showImg );
 
 export default router;
