@@ -5,6 +5,10 @@ import { generateJWT } from '../../helpers/jwt';
 // Models
 import { User } from '../../models';
 
+/*
+  PATH: '/api/auth/login'
+  DOC: 
+*/
 export const authLogin = async ( req: Request, res: Response ) => {
   const { email, password } = req.body;
 

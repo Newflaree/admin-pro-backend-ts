@@ -6,6 +6,10 @@ import { generateJWT } from '../../helpers/jwt';
 // Modesls
 import { User } from '../../models';
 
+/*
+  PATH: '/api/auth/renew'
+  DOC: 
+*/
 export const renewToken = async ( req: UserAuthRequest, res: Response ) => {
   const { _id } = req.user;
 

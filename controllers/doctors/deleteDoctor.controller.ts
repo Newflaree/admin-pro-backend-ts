@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 // Models
 import { Doctor } from '../../models';
 
+/*
+  PATH: '/api/doctors/:id'
+  DOC: 
+*/
 export const deleteDoctor = async ( req: Request, res: Response ) => {
   const { id } = req.params;
 

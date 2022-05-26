@@ -3,6 +3,10 @@ import { UserAuthRequest } from '../../interfaces/http-interfaces';
 // Models
 import { Doctor } from '../../models';
 
+/*
+  PATH: '/api/doctors'
+  DOC: 
+*/
 export const createDoctor = async ( req: UserAuthRequest, res: Response ) => {
   const uid = req.user._id;
   const { name, hospital } = req.body;

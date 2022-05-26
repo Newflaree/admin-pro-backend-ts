@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 // Models
 import { User } from '../../models';
 
+/*
+  PATH: '/api/users/:id'
+  DOC: 
+*/
 export const deleteUser = async ( req: Request, res: Response ) => {
   const { id } = req.params;
   const inactivator = { status: false };

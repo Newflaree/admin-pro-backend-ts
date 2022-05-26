@@ -7,6 +7,10 @@ import { FileRequest } from '../../interfaces/http-interfaces';
 // Models
 import { Doctor, Hospital, User } from '../../models';
 
+/*
+  PATH: '/api/uploads/:collection/:id'
+  DOC: 
+*/
 export const fileUpload = async ( req: FileRequest, res: Response ) => {
   const { id, collection } = req.params;
 

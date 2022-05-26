@@ -1,6 +1,10 @@
 import { Request, Response } from 'express';
 import { User } from '../../models';
 
+/*
+  PATH: '/api/users/:id'
+  DOC: 
+*/
 export const getUser = async ( req: Request, res: Response ) => {
   const { id } = req.params;
 

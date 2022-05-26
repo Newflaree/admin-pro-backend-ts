@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 // Models
 import { Doctor, Hospital, User } from '../../models';
 
+/*
+  PATH: '/api/searches/:term'
+  DOC: 
+*/
 export const totalSearch = async ( req: Request, res: Response ) => {
   const { from = 0, limit = 5 } = req.query;
   const { term } = req.params;

@@ -3,6 +3,10 @@ import bcript from 'bcryptjs';
 // Models
 import { User } from '../../models';
 
+/*
+  PATH: '/api/users/:id'
+  DOC: 
+*/
 export const updateUser = async ( req: Request, res: Response ) => {
   const { id } = req.params;
   const { _id, email, password, status, ...rest } = req.body;

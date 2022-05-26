@@ -2,6 +2,10 @@ import { Request, Response } from 'express';
 // Models
 import { Hospital } from '../../models';
 
+/*
+  PATH: '/api/hospitals/:id'
+  DOC: 
+*/
 export const updateHospital = async ( req: Request, res: Response ) => {
   const { id } = req.params;
   const { img, status, _id, ...rest } = req.body;

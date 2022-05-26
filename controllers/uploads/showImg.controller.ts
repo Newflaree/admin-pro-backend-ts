@@ -8,6 +8,10 @@ import { FileRequest } from '../../interfaces/http-interfaces';
 // Models
 import { Doctor, Hospital, User } from '../../models';
 
+/*
+  PATH: '/api/uploads/:collection/:id'
+  DOC: 
+*/
 export const showImg = async ( req: FileRequest, res: Response ) => {
   const { collection, id } = req.params;
 

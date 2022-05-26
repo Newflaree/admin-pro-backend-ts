@@ -3,6 +3,10 @@ import { Request, Response } from 'express';
 // Models
 import { Doctor, Hospital, User } from '../../models';
 
+/*
+  PATH: '/api/searches/:collection/:term'
+  DOC: 
+*/
 export const collectionSearch = async ( req: Request, res: Response ) => {
   const { from = 0, limit = 5 } = req.query;
   const { collection } = req.params;

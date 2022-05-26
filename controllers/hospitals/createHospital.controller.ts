@@ -3,6 +3,10 @@ import { UserAuthRequest } from '../../interfaces/http-interfaces';
 // Models
 import { Hospital } from '../../models';
 
+/*
+  PATH: '/api/hospitals'
+  DOC: 
+*/
 export const createHospital = async ( req: UserAuthRequest, res: Response ) => {
   const name = req.body.name.toUpperCase();
 
