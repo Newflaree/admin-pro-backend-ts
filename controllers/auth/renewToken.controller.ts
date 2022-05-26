@@ -3,15 +3,19 @@ import { Response } from 'express';
 import { UserAuthRequest } from '../../interfaces/http-interfaces';
 // Helpers
 import { generateJWT } from '../../helpers/jwt';
+// Modesls
+import { User } from '../../models';
 
 export const renewToken = async ( req: UserAuthRequest, res: Response ) => {
   const { _id } = req.user;
 
   try {
+    const user = await User.findById( _id );
     const token = await generateJWT( _id )
 
     res.status( 200 ).json({
       ok: true,
+      user,
       token
     });
 
