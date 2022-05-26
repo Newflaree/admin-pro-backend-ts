@@ -1,4 +1,6 @@
 import express, { Application } from 'express';
+import fileupload from 'express-fileupload';
+
 import cors from 'cors';
 // Database
 import dbConnection from '../database/config.db';
@@ -14,6 +16,7 @@ import {
   usersRouter
 } from '../routes';
 
+
 class Server {
   private app: Application;
   private port: string;
@@ -23,12 +26,12 @@ class Server {
     this.app = express();
     this.port = process.env.PORT || '3001';
     this.apiPaths = {
-      auth: '/api/auth',
-      doctors: '/api/doctors',
+      auth:      '/api/auth',
+      doctors:   '/api/doctors',
       hospitals: '/api/hospitals',
-      searches: '/api/searches',
-      uploads: '/api/uploads',
-      users: '/api/users',
+      searches:  '/api/searches',
+      uploads:   '/api/uploads',
+      users:     '/api/users',
     }
 
     // Init methods
@@ -42,8 +45,16 @@ class Server {
   }
 
   middlewares() {
+    // Cors
     this.app.use( cors() );
+    // ParseBody
     this.app.use( express.json() );
+    // FileUpload
+    this.app.use( fileupload({
+      useTempFiles: true,
+      tempFileDir: '/tmp/',
+      createParentPath: true
+    }));
   }
 
   routes() {

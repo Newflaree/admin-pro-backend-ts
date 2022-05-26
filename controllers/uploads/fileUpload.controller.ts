@@ -57,8 +57,23 @@ export const fileUpload = async ( req: FileRequest, res: Response ) => {
         });
     }
 
+    if ( model.img ) {
+      const cutName = model.img.split( '/' );
+      const name = cutName[ cutName.length - 1 ];
+      const [ public_id ] = name.split( '.' );
+
+      await cloudinary.uploader.destroy( public_id );
+    }
+
+    const { tempFilePath } = req.files.file;
+    const { secure_url } = await cloudinary.uploader.upload( tempFilePath );
+
+    model.img = secure_url;
+    await model.save();
+
     res.status( 200 ).json({
       ok: true,
+      model
     });
 
   } catch ( err ) {
