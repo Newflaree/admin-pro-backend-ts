@@ -22,8 +22,6 @@ router.put( '/:collection/:id', [
 ], fileUpload );
 
 router.get( '/:collection/:id',[
-  validateJWT,
-  validateFields
 ], showImg );
 
 export default router;

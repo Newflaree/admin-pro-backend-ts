@@ -5,7 +5,7 @@ export const generateJWT = ( uid: object ) => {
     const payload = { uid };
 
     jwt.sign( payload, process.env.SECRET_KEY || '', {
-      expiresIn: '2h'
+      expiresIn: '24h'
     }, ( err, token ) => {
       if ( err ) {
         console.log( `${ '[HELPER.GENERATE-JWT]'.red }: Error details - ${ err }` );
