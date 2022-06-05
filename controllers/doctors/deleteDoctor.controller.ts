@@ -10,14 +10,7 @@ export const deleteDoctor = async ( req: Request, res: Response ) => {
   const { id } = req.params;
 
   try {
-    const doctor = await Doctor.findByIdAndUpdate( id, { status: false } ) || { status: false };
-
-    if ( !doctor.status ) {
-      return res.status( 400 ).json({
-        ok: false,
-        msg: 'There is no doctor with that id'
-      });
-    }
+    await Doctor.findByIdAndUpdate( id, { status: false } );
 
     res.status( 200 ).json({
       ok: true,

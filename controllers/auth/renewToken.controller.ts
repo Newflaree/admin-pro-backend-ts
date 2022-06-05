@@ -14,8 +14,10 @@ export const renewToken = async ( req: UserAuthRequest, res: Response ) => {
   const { _id } = req.user;
 
   try {
-    const user = await User.findById( _id );
-    const token = await generateJWT( _id )
+    const [ user, token ] = await Promise.all([
+      User.findById( _id ),
+      generateJWT( _id )
+    ]);
 
     res.status( 200 ).json({
       ok: true,

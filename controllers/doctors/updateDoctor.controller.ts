@@ -15,15 +15,7 @@ export const updateDoctor = async ( req: UserAuthRequest, res: Response ) => {
   try {
     const doctor = await Doctor.findByIdAndUpdate( id, rest, { new: true })
       .populate( 'user', 'name' ) 
-      .populate( 'hospital', 'name' )
-      || { status: false };
-
-    if ( !doctor.status ) {
-      return res.status( 400 ).json({
-        ok: false,
-        msg: 'There is no doctor with that id'
-      });
-    }
+      .populate( 'hospital', 'name' );
 
     res.status( 200 ).json({
       ok: true,
@@ -38,4 +30,3 @@ export const updateDoctor = async ( req: UserAuthRequest, res: Response ) => {
     });
   }
 }
-

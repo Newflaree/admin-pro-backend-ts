@@ -17,14 +17,7 @@ export const updateUser = async ( req: Request, res: Response ) => {
       rest.password = bcript.hashSync( password, salt );
     }
 
-    const user = await User.findByIdAndUpdate( id, rest, { new: true } ) || { status: false };
-
-    if ( !user.status ) {
-      return res.status( 400 ).json({
-        ok: false,
-        msg: 'There is no user with that id'
-      });
-    }
+    const user = await User.findByIdAndUpdate( id, rest, { new: true } );
 
     res.status( 200 ).json({
       ok: true,

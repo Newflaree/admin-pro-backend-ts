@@ -9,6 +9,7 @@ import { validateFields, validateFile, validateJWT } from '../middlewares';
 
 /*
   PATH: '/api/uploads'
+  DOC:
 */
 const router: Router = Router();
 
@@ -16,9 +17,13 @@ router.put( '/:collection/:id', [
   validateJWT,
   check( 'id', 'Invalid mongo id' ).isMongoId(),
   check( 'collection' ).custom( c => allowedCollections( c, [ 'users', 'hospitals', 'doctors' ] ) ),
+  validateFile,
   validateFields
 ], fileUpload );
 
-router.get( '/:collection/:id', showImg );
+router.get( '/:collection/:id',[
+  validateJWT,
+  validateFields
+], showImg );
 
 export default router;

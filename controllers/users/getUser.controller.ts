@@ -9,14 +9,7 @@ export const getUser = async ( req: Request, res: Response ) => {
   const { id } = req.params;
 
   try {
-    const user = await User.findById({ _id: id }) || { status: false };
-
-    if ( !user.status ) {
-      return res.status( 400 ).json({
-        ok: false,
-        msg: 'There is no user with that id'
-      });
-    }
+    const user = await User.findById({ _id: id });
 
     res.status( 200 ).json({
       ok: true,

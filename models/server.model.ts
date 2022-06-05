@@ -1,6 +1,5 @@
 import express, { Application } from 'express';
 import fileupload from 'express-fileupload';
-
 import cors from 'cors';
 // Database
 import dbConnection from '../database/config.db';
@@ -58,12 +57,12 @@ class Server {
   }
 
   routes() {
-    this.app.use( this.apiPaths.auth, authRouter );
-    this.app.use( this.apiPaths.doctors, doctorsRouter );
+    this.app.use( this.apiPaths.auth,      authRouter );
+    this.app.use( this.apiPaths.doctors,   doctorsRouter );
     this.app.use( this.apiPaths.hospitals, hospitalsRouter );
-    this.app.use( this.apiPaths.searches, searchesRouter );
-    this.app.use( this.apiPaths.uploads, uploadsRouter );
-    this.app.use( this.apiPaths.users, usersRouter );
+    this.app.use( this.apiPaths.searches,  searchesRouter );
+    this.app.use( this.apiPaths.uploads,   uploadsRouter );
+    this.app.use( this.apiPaths.users,     usersRouter );
   }
 
   listen() {

@@ -1,7 +1,6 @@
 import { Router } from 'express';
 // Controllers
-import { collectionSearch, totalSearch } from '../controllers/searches';
-// Helpers
+import { collectionSearch, searchInactives } from '../controllers/searches';
 // Middlewares
 import { validateFields, validateJWT } from '../middlewares';
 
@@ -10,10 +9,10 @@ import { validateFields, validateJWT } from '../middlewares';
 */
 const router: Router = Router();
 
-router.get( '/:term', [
+router.get( '/:collection', [
   validateJWT,
   validateFields
-], totalSearch );
+], searchInactives );
 
 router.get( '/:collection/:term', [
   validateJWT,

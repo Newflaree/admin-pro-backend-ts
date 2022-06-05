@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { v4 as uuidv4 } from 'uuid';
+uuidv4();
 // Models
 import { Hospital } from '../../models';
 
@@ -8,16 +10,10 @@ import { Hospital } from '../../models';
 */
 export const deleteHospital = async ( req: Request, res: Response ) => {
   const { id } = req.params;
+  const uid = uuidv4();
 
   try {
-    const hospital = await Hospital.findByIdAndUpdate( id, { status: false } ) || { status: false };
-
-      if ( !hospital.status ) {
-        return res.status( 400 ).json({
-          ok: false,
-          msg: 'There is no hospital with that id'
-        });
-      }
+    await Hospital.findByIdAndUpdate( id, { name: uid, status: false} );
 
     res.status( 200 ).json({
       ok: true,

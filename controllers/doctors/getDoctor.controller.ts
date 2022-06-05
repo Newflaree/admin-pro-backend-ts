@@ -12,15 +12,7 @@ export const getDoctor = async ( req: Request, res: Response ) => {
   try {
     const doctor = await Doctor.findById( id )
       .populate( 'user', 'name' ) 
-      .populate( 'hospital', 'name' )
-      || { status: false };
-
-    if ( !doctor.status ) {
-      return res.status( 400 ).json({
-        ok: false,
-        msg: 'There is no doctor with that id'
-      });
-    }
+      .populate( 'hospital', 'name' );
 
     res.status( 200 ).json({
       ok: true,

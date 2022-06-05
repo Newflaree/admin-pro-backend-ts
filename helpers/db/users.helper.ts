@@ -14,7 +14,7 @@ export const emailValidation = async ( email: string ) => {
 export const idValidation = async ( id: string ) => {
   const userExists = await User.findById( id );
 
-  if ( !userExists ) {
+  if ( !userExists || !userExists.status ) {
     throw new Error( 'There is no user with that id' );
   }
 

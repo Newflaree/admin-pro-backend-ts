@@ -14,7 +14,7 @@ export const hospitalValidation = async ( name: string ) => {
 export const hospitalIdValidation = async ( id: string ) => {
   const hospitalExists = await Hospital.findById( id );
   
-  if ( !hospitalExists ) {
+  if ( !hospitalExists || !hospitalExists.status ) {
     throw new Error( 'There is no hospital with that id' );
   }
   

@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 // Cloudinary
 import { v2 as cloudinary } from 'cloudinary';
 cloudinary.config( process.env.CLOUDINARY_URL || '' );
@@ -15,6 +15,13 @@ export const fileUpload = async ( req: FileRequest, res: Response ) => {
   const { id, collection } = req.params;
 
   let model: any;
+
+  if ( !req.files ) {
+    return res.status( 400 ).json({
+      ok: false,
+      msg: 'There are no files to upload'
+    });
+  }
 
   try {
     switch ( collection ) {
