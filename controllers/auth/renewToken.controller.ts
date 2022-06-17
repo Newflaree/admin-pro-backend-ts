@@ -5,6 +5,7 @@ import { UserAuthRequest } from '../../interfaces/http-interfaces';
 import { generateJWT } from '../../helpers/jwt';
 // Modesls
 import { User } from '../../models';
+import {getManuFront} from '../../helpers/menu-front';
 
 /*
   PATH: '/api/auth/renew'
@@ -22,6 +23,7 @@ export const renewToken = async ( req: UserAuthRequest, res: Response ) => {
     res.status( 200 ).json({
       ok: true,
       user,
+      menu: getManuFront( user?.role ),
       token
     });
 
