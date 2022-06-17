@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import { generateJWT } from '../../helpers/jwt';
 // Models
 import { User } from '../../models';
+import {getManuFront} from '../../helpers/menu-front/menu.helper';
 
 /*
   PATH: '/api/auth/login'
@@ -46,6 +47,7 @@ export const authLogin = async ( req: Request, res: Response ) => {
     res.status( 200 ).json({
       ok: true,
       user,
+      menu: getManuFront( user.role ),
       token
     });
 

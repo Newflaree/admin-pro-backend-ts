@@ -1,2 +1,3 @@
-export { collectionSearch } from "./collectionSearch.controller";
-export { searchInactives } from "./searchInactives.controller";
+export * from "./collectionSearch.controller";
+export * from "./globalSearch.controller";
+export * from "./searchInactives.controller";
