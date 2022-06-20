@@ -4,6 +4,7 @@ import { UserAuthRequest } from "../interfaces/http-interfaces";
 
 
 export const validateRole = async ( req: UserAuthRequest, res: Response, next: NextFunction ) => {
+  const { id } = req.params;
 
   if ( !req.user ) {
     return res.status( 500 ).json({
@@ -13,10 +14,9 @@ export const validateRole = async ( req: UserAuthRequest, res: Response, next: N
   }
 
   try {
-    const { role, name } = req.user;
-    console.log( role, name );
+    const { role, name, id } = req.user;
 
-    if ( role !== 'ADMIN_ROLE' ) {
+    if ( role !== 'ADMIN_ROLE' && id !== id ) {
       return res.status( 401 ).json({
         ok: false,
         msg: `${ name } is not an ADMIN`
