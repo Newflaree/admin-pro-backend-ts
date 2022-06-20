@@ -10,7 +10,7 @@ import {
 // Helpers
 import { idValidation } from '../helpers/db/users.helper';
 // Middlewares
-import { validateFields, validateJWT } from '../middlewares';
+import { validateFields, validateJWT, validateRole } from '../middlewares';
 
 /*
   PATH: '/api/users'
@@ -19,11 +19,13 @@ const router: Router = Router();
 
 router.get( '/', [
   validateJWT,
+  validateRole,
   validateFields
 ], getUsers );
 
 router.get( '/:id', [
   validateJWT,
+  validateRole,
   check( 'id', 'Invalid id' ).isMongoId(),
   check( 'id' ).custom( idValidation ),
   validateFields
@@ -31,6 +33,7 @@ router.get( '/:id', [
 
 router.put( '/:id', [
   validateJWT,
+  validateRole,
   check( 'id', 'Invalid id' ).isMongoId(),
   check( 'id' ).custom( idValidation ),
   validateFields
@@ -38,6 +41,7 @@ router.put( '/:id', [
 
 router.delete( '/:id', [
   validateJWT,
+  validateRole,
   check( 'id', 'Invalid id' ).isMongoId(),
   check( 'id' ).custom( idValidation ),
   validateFields
